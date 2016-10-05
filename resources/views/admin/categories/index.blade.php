@@ -3,7 +3,7 @@
 @section('title', 'listado de Categorias')
 
 @section('content')
-	<a href="{{ route('admin.categories.create') }}" class="btn btn-info">Registrar nueva Cateforia</a><hr>
+	<a href="{{ route('admin.categories.create') }}" class="btn btn-info">Registrar nueva Categoria</a><hr>
 	<table class="table table-striped">
 		<thead>
 			<th>ID</th>
