@@ -36,10 +36,9 @@ Route::group(['prefix'=>'admin'], function(){
 		'as'   => 'admin.categories.destroy'
 	]);
 
-	// Authentication routes...
-	Route::get('auth/login', 'Auth\AuthController@getLogin');
-	Route::post('auth/login', 'Auth\AuthController@postLogin');
-	Route::get('auth/logout', 'Auth\AuthController@getLogout');
-
 });
 
+// Authentication routes...
+Route::get('admin/auth/login', 'Auth\AuthController@getLogin');
+Route::post('admin/auth/login', 'Auth\AuthController@postLogin');
+Route::get('admin/auth/logout', 'Auth\AuthController@getLogout');
