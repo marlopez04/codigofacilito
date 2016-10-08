@@ -33,6 +33,10 @@ class AuthController extends Controller
         $this->middleware('guest', ['except' => 'getLogout']);
     }
 
+    protected $redirectPath = '/admin';
+
+//    protected $redirectPath = '/admin/auth/login';
+
     /**
      * Get a validator for an incoming registration request.
      *
@@ -67,4 +71,5 @@ class AuthController extends Controller
     {
         return view('admin.auth.login');
     }
+
 }
