@@ -16,6 +16,9 @@
 GET, POST, PUT, DELETE, RESURCE
 
 */
+Route::get('/', ['as' => 'admin.index',function (){
+	return view('welcome');
+}]);
 
 
 
@@ -36,6 +39,12 @@ Route::group(['prefix'=>'admin', 'middleware' => 'auth'], function(){
 	Route::get('categories/{id}/destroy',[
 		'uses' => 'CategoriesController@destroy',
 		'as'   => 'admin.categories.destroy'
+	]);
+
+	Route::resource('tags', 'TagsController');
+	Route::get('categories/{id}/destroy',[
+		'uses' => 'TagsController@destroy',
+		'as'   => 'admin.tags.destroy'
 	]);
 
 });
