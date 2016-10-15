@@ -3,23 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\TagRequest;
+
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Category;
 use App\Tag;
-use Laracasts\Flash\Flash;
 
-class TagsController extends Controller
+class ArticlesController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $tags = Tag::search($request->name)->orderBy('id','DESC')->paginate(5);
-        return view ('admin.tags.index')->with('tags', $tags);
+        //
     }
 
     /**
@@ -29,7 +28,10 @@ class TagsController extends Controller
      */
     public function create()
     {
-        return view('admin.tags.create');
+        $categories = Category::orderBy('name', 'ASC')->get();
+        $tags = Tag::orderBy('name', 'ASC')->get();
+
+        return view('admin.articles.create')->with('categories', $categories);
     }
 
     /**
@@ -38,14 +40,10 @@ class TagsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(TagRequest $request)
+    public function store(Request $request)
     {
-        $tag = new Tag($request -> all());
-        $tag ->save();
-
-        Flash::success('El tag '. $tag->name . ' ha sido creado con exito');
-        return redirect()->route('admin.tags.index');
-    }   
+        //
+    }
 
     /**
      * Display the specified resource.
@@ -66,8 +64,7 @@ class TagsController extends Controller
      */
     public function edit($id)
     {
-        $tag = Tag::find($id);
-        return view('admin.tags.edit')->with('tag', $tag);
+        //
     }
 
     /**
@@ -79,11 +76,7 @@ class TagsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $tag = Tag::find($id);
-        $tag->fill($request->all());
-        $tag->save();
-        Flash::warning('El tag '. $tag->name . ' ha sido modificado.');
-        return redirect()->route('admin.tags.index');
+        //
     }
 
     /**
@@ -94,9 +87,6 @@ class TagsController extends Controller
      */
     public function destroy($id)
     {
-        $tag = Tag::find($id);
-        $tag->delete();
-        Flash::error('El tag '. $tag->name . ' se borro correctamente.');
-        return redirect()->route('admin.tags.index');
+        //
     }
 }
