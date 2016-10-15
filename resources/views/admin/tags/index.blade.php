@@ -8,7 +8,7 @@
 	
 		{!! Form::open(['route' => 'admin.tags.index', 'method' => 'GET', 'class' => 'navbar-form pull-right'])!!}
 			<div class="form-group">
-				{!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Buscar tag..'])!!}
+				{!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Buscar tag..', 'aria-describedby' => 'search'])!!}
 			</div>
 
 		{!! Form::close() !!}
