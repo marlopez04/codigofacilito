@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Category;
 use App\Tag;
+use App\Article;
 
 class ArticlesController extends Controller
 {
@@ -28,10 +29,12 @@ class ArticlesController extends Controller
      */
     public function create()
     {
-        $categories = Category::orderBy('name', 'ASC')->get();
-        $tags = Tag::orderBy('name', 'ASC')->get();
+        $categories = Category::orderBy('name', 'ASC')->lists('name', 'id');
+        $tags = Tag::orderBy('name', 'ASC')->lists('name', 'id');
 
-        return view('admin.articles.create')->with('categories', $categories);
+        return view('admin.articles.create')
+            ->with('categories', $categories)
+            ->with('tags', $tags);
     }
 
     /**
@@ -42,7 +45,20 @@ class ArticlesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       //Manipulacion de imagenes
+        /*
+        if ($request->file('image'))
+        {
+            $file = $request->file('image');
+           $name = 'blogfacilito_' . time() .'.' . $file->getClientOriginalExtension();
+           $path = public_path() . '/images/articles/';
+           $file->move($path, $name);     
+        }
+            */
+
+        $article = new Article($request->all());
+        dd($article);
+       
     }
 
     /**
