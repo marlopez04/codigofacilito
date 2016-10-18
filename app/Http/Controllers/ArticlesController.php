@@ -9,6 +9,10 @@ use App\Http\Controllers\Controller;
 use App\Category;
 use App\Tag;
 use App\Article;
+use App\Image;
+use Illuminate\Support\Facades\Redirect;
+use Laracasts\Flash\Flash;
+use App\Http\Requests\ArticleRequest;
 
 class ArticlesController extends Controller
 {
@@ -19,7 +23,7 @@ class ArticlesController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.articles.index');
     }
 
     /**
@@ -43,10 +47,10 @@ class ArticlesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ArticleRequest $request)
     {
        //Manipulacion de imagenes
-        /*
+        
         if ($request->file('image'))
         {
             $file = $request->file('image');
@@ -54,10 +58,22 @@ class ArticlesController extends Controller
            $path = public_path() . '/images/articles/';
            $file->move($path, $name);     
         }
-            */
+            
 
         $article = new Article($request->all());
-        dd($article);
+        $article->user_id = \Auth::user()->id;
+        $article->save();
+
+        $article->tags()->sync($request->tags);
+
+        $image = new Image();
+        $image->name = $name;
+        $image->article()->associate($article);
+        $image->save();
+
+        Flash::success('Se ha creado el articulo '. $article->title . ' de forma satisfactoria!');
+
+        return redirect()->route('admin.articles.index');
        
     }
 
