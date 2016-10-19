@@ -1,31 +1,27 @@
 @extends('admin.template.main')
 
-@section('title', 'Agregar articulo')
+@section('title', 'Editar articulo' . $article->title)
 
 @section('content')
-	{!! Form::open(['route' => 'admin.articles.store', 'method' => 'POST', 'files' => true]) !!}
+	{!! Form::open(['route' => ['admin.articles.update', $article], 'method' => 'PUT']) !!}
 		<div class="form-group">
 			{!! Form::label('title', 'Titulo') !!}
-			{!! Form::text('title', null, ['class' => 'form-control', 'placeholder' => 'Totulo del articulo.', 'required'])!!}
+			{!! Form::text('title', $article->title, ['class' => 'form-control', 'placeholder' => 'Totulo del articulo.', 'required'])!!}
 		</div>
 		<div class="form-group">
 			{!! Form::label('category_id', 'categoria') !!}
-			{!! Form::select('category_id', $categories, null, ['class' => 'form-control select-category', 'required']) !!}
+			{!! Form::select('category_id', $categories, $article->category->id, ['class' => 'form-control select-category', 'required']) !!}
 		</div>
 		<div class="form-group">
 			{!! Form::label('content', 'Contenido')!!}
-			{!! Form::textarea('content', null, ['class' => 'form-control textarea-content'])!!}
+			{!! Form::textarea('content', $article->content, ['class' => 'form-control textarea-content'])!!}
 		</div>
 		<div class="form-group">
 			{!! Form::label('tags', 'Tags') !!}
-			{!! Form::select('tags[]', $tags, null,['class' => 'form-control select-tag','multiple', 'required']) !!}
+			{!! Form::select('tags[]', $tags, $my_tags,['class' => 'form-control select-tag','multiple', 'required']) !!}
 		</div>
 		<div class="form-group">
-			{!! Form::label('image', 'Imagen')!!}
-			{!! Form::file('image')!!}
-		</div>
-		<div class="form-group">
-			{!! Form::submit('Agregar articulo',['class' => 'btn btn-primary']) !!}
+			{!! Form::submit('Editar articulo',['class' => 'btn btn-primary']) !!}
 		</div>
 	{!! Form::close() !!}
 @endsection

@@ -17,7 +17,7 @@
       <ul class="nav navbar-nav">
         <li class="active"><a href="{{ route('admin.users.index') }}">Usuario<span class="sr-only">(current)</span></a></li>
         <li><a href="{{ route('admin.categories.index') }}">Categorias</a></li>
-        <li><a href="{{ route('admin.categories.index') }}">Articulos</a></li>
+        <li><a href="{{ route('admin.articles.index') }}">Articulos</a></li>
         <li><a href="{{ route('admin.categories.index') }}">Imagenes</a></li>
         <li><a href="{{ route('admin.tags.index') }}">Tags</a></li>
         <li class="dropdown">
