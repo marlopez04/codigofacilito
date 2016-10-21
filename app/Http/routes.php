@@ -16,8 +16,8 @@
 GET, POST, PUT, DELETE, RESURCE
 
 */
-Route::get('/', ['as' => 'admin.index',function (){
-	return view('welcome');
+Route::get('/', ['as' => 'front.index',function (){
+	return view('front.index');
 }]);
 
 
@@ -25,7 +25,7 @@ Route::get('/', ['as' => 'admin.index',function (){
 Route::group(['prefix'=>'admin', 'middleware' => 'auth'], function(){
 	
 	Route::get('/',['as' => 'admin.index', function () {
-    return view('welcome');
+    return view('admin.index');
 }]);
 	
 	Route::resource('users','UsersController');
@@ -53,6 +53,10 @@ Route::group(['prefix'=>'admin', 'middleware' => 'auth'], function(){
 		'as'   => 'admin.articles.destroy'
 	]);
 
+	Route::get('images', [
+		'uses' => 'ImagesController@index',
+		'as'   => 'admin.images.index'
+		]);
 
 });
 

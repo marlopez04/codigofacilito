@@ -1,5 +1,7 @@
 <?php
 
+use App\User;
+use Faker\Generator;
 /*
 |--------------------------------------------------------------------------
 | Model Factories
@@ -11,6 +13,18 @@
 |
 */
 
+$factory->define(User::class, function(Generator $faker){
+	$array = [
+		'name'  => $faker->name,
+		'email' => $faker->email,
+		'password' => bcrypt('12345')
+	];
+	return $array;
+
+});
+
+
+/* MODEL FACTORY QUE YA ESTABA
 $factory->define(App\User::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name,
@@ -19,3 +33,5 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+*/
