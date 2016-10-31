@@ -41,7 +41,7 @@ class Article extends Model
     	return $this->belongsto('App\User');
     }
 
-    public function image ()
+    public function images ()
     {
     	return $this->hasMany('App\Image');
     }

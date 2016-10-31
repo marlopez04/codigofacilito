@@ -7,23 +7,22 @@
 	<link rel="stylesheet" href="{{asset('plugins/bootstrap/css/bootstrap.css')}}">
 	<link rel="stylesheet" href="{{ asset('plugins/chosen/chosen.css') }}">
 	<link rel="stylesheet" href="{{ asset('plugins/trumbowyg/ui/trumbowyg.css')}}">
+	<link rel="stylesheet" href="{{ asset('plugins/font-awesome/css/font-awesome.min.css') }}">
 </head>
-<body class="admin-body">
+<body>
 	
 	@include('admin.template.partials.nav')
 	
-	<section class="section-admin">
-		<div class="panel panel-default">
-			<div class="panel panel-heading">
-				<h3 class="panel-title">@yield('title')</h3>
-			</div>
-			<div class="panel-body">
-				@include('flash::message')
-				@include('admin.template.partials.errors')
-				@yield('content')
-			</div>
-		</div>
-	</section>
+	<div class="conteiner">				
+		@yield('content')
+		
+	
+	<footer>
+		<hr>
+		Todos los derechos resevados & copy {{ date('Y')}}
+		<div class="pull-right">López Morales Martín</div>
+	</footer>
+	</div>
 
 	<script src="{{ asset('plugins/jquery/jquery-2.2.4.js') }}"></script>
 	<script src="{{ asset('plugins/bootstrap/js/bootstrap.js') }}"></script>

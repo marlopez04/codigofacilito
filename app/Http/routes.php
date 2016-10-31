@@ -16,11 +16,16 @@
 GET, POST, PUT, DELETE, RESURCE
 
 */
-Route::get('/', ['as' => 'front.index',function (){
-	return view('front.index');
-}]);
+
+//RUTAS DEL FRONTEND
+
+Route::get('/', [
+	'as' => 'front.index',
+	'uses' => 'FrontController@index'
+]);
 
 
+// RUTAS DEL PANEL DE ADMINISTRACION
 
 Route::group(['prefix'=>'admin', 'middleware' => 'auth'], function(){
 	

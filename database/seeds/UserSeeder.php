@@ -12,6 +12,13 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\User::class, 10)->create();
+    	//para crear usuarios random
+		//factory(App\User::class, 10)->create();
+		DB::table('users')->insert([
+			'name'     => 'Martin',
+			'email'    => 'marlopez04@hotmail.com',
+			'password' => bcrypt('12345'),
+			'type'     => 'admin'
+			]);
     }
 }
