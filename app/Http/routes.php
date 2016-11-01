@@ -24,6 +24,20 @@ Route::get('/', [
 	'uses' => 'FrontController@index'
 ]);
 
+Route::get('categories/{name}',[
+	'uses' => 'FrontController@searchCategory',
+	'as'   => 'front.search.category'
+	]);
+
+Route::get('tags/{name}',[
+	'uses' => 'FrontController@searchTag',
+	'as'   => 'front.search.tag'
+	]);
+
+Route::get('articles/{slug}',[
+	'uses' => 'FrontController@viewArticle',
+	'as'   => 'front.view.article'
+	]);
 
 // RUTAS DEL PANEL DE ADMINISTRACION
 

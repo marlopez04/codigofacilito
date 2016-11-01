@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 	<meta charset="UTF-8">
-	<title> @yield('title', 'Default') |Panel de Administracion</title>
+	<title> @yield('title', 'Default')</title>
 	<link rel="stylesheet" href="{{ asset('css/admin.css') }}">
 	<link rel="stylesheet" href="{{asset('plugins/bootstrap/css/bootstrap.css')}}">
 	<link rel="stylesheet" href="{{ asset('plugins/chosen/chosen.css') }}">
