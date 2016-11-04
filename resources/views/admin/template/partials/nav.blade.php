@@ -8,14 +8,16 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Brand</a>
+      <a class="navbar-brand" href="{{route('front.index')}}">CodigoFacilito</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       @if(Auth::user())
       <ul class="nav navbar-nav">
-        <li class="active"><a href="{{ route('admin.users.index') }}">Usuario<span class="sr-only">(current)</span></a></li>
+        @if(Auth::user()->admin())
+          <li class="active"><a href="{{ route('admin.users.index') }}">Usuario<span class="sr-only">(current)</span></a></li>
+        @endif
         <li><a href="{{ route('admin.categories.index') }}">Categorias</a></li>
         <li><a href="{{ route('admin.articles.index') }}">Articulos</a></li>
         <li><a href="{{ route('admin.images.index') }}">Imagenes</a></li>
@@ -49,7 +51,12 @@
           </ul>
         </li>
       </ul>
+      @else
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="{{ route('admin.auth.login') }}">Log In</a></li>
+      </ul>
       @endif
+
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>

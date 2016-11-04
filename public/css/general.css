@@ -1,3 +1,9 @@
 body{
 	background-color: green;
 }
+
+
+.inmg-article{
+	min-height: 300px;
+	min-width:  300px;
+}

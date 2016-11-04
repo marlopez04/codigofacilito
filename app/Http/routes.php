@@ -45,14 +45,20 @@ Route::group(['prefix'=>'admin', 'middleware' => 'auth'], function(){
 	
 	Route::get('/',['as' => 'admin.index', function () {
     return view('admin.index');
-}]);
+	}]);
+
+	Route::group(['middleware' => 'admin'], function(){
+		
+		Route::resource('users','UsersController');
+
+		Route::get('users/{id}/destroy', [
+			'uses' => 'UsersController@destroy',
+			'as'   => 'admin.users.destroy'
+		]);
+		
+	});
+
 	
-	Route::resource('users','UsersController');
-	
-	Route::get('users/{id}/destroy', [
-		'uses' => 'UsersController@destroy',
-		'as'   => 'admin.users.destroy'
-	]);
 
 	Route::resource('categories', 'CategoriesController');
 	Route::get('categories/{id}/destroy',[
